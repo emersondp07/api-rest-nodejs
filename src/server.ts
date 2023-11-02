@@ -1,18 +1,16 @@
 import fastify from "fastify";
-import { knex } from "./database";
 import { env } from "./env";
+import { transactionsRoutes } from "./routes/transactions";
 
 const app = fastify();
 
-app.get("/hello", async () => {
-  const transactions = await knex("transactions").select("*");
-
-  return transactions;
+app.register(transactionsRoutes, {
+  prefix: "transactions",
 });
 
 app
   .listen({
-    port: env.PORT,
+    port: env.PORT ?? 3334,
   })
   .then(() => {
     console.log("HTTP Server Running!");
