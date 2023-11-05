@@ -3,7 +3,7 @@ import { env } from "./env";
 
 app
   .listen({
-    port: env.PORT ?? 3334,
+    port: env.PORT,
   })
   .then(() => {
     console.log("HTTP Server Running!");
